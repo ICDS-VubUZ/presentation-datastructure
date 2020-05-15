@@ -276,11 +276,14 @@ wilfried.cools@vub.be
 <!-- RUN:: working directory and libraries -->
 <!-- Sys.setenv(RSTUDIO_PANDOC="C:/Program Files/RStudio/bin/pandoc")
 fname <- "representation"
-rmarkdown::render(paste0(fname,".Rmd"),output_format=c('html_document'))
 rmarkdown::render(paste0(fname,".Rmd"),output_format=c('pdf_document'))
+rmarkdown::render(paste0(fname,".Rmd"),output_format=c('html_document'))
 # knitr::purl(paste0(fname,".Rmd"), output=paste0(fname,".r"))
 -->
 <!-- all tibbl's used for table output -->
+<p> <br />
+ </p>
+<p>Compiled May 15, 2020</p>
 
 <p> <br />
  <br />
@@ -332,7 +335,7 @@ In preparation of data analysis, it is wise to think carefully about how to repr
 <div id="challenge" class="section level1">
 <h1>challenge</h1>
 <p> <br />
-Create a data file for the following 4 participants (assuming many more), ready for analysis.<br />
+Test yourself: create a data file for the following 4 participants (assuming many more), ready for analysis.<br />
  </p>
 <ul>
 <li>Enid Charles, age 43,
@@ -3972,7 +3975,18 @@ id5
 </div>
 <div id="codebook" class="section level1">
 <h1>codebook</h1>
-<p>If it is impossible or very impractical to include the information in the actual table(s), a solution could still be to document it in an external file. While it would make automatic processing that information impossible, it often suffices for communication with other researchers and data analysts. A codebook should contains all the additional information that is used for interpretation purposes and that adds information to the variable names and cell values that is not present in the actual data.</p>
+<p>It is best to let data be as self-explanatory as possible. Information should also best be stored in ways that allow for automated processing.<br />
+Where impossible or very impractical to include information in the actual table(s), an external textual file can be used typically referred to as a codebook.</p>
+<ul>
+<li>could include information on
+<ul>
+<li>meaning of variable / intended use</li>
+<li>how data are collected</li>
+<li>range / set of possible values</li>
+<li>structural missingness</li>
+<li>. . .</li>
+</ul></li>
+</ul>
 <p> <br />
  <br />
  </p>
@@ -4612,16 +4626,6 @@ FALSE
  <br />
  <br />
  </p>
-<!--
-for pdf: \newpage and two spaces at the end (also after <br/>)
-for html: <br/>
-color #003399
-weird issue <br/>__ problem for pdf if immediately followed by line of text ?!
-
-
-to print two tables next to each-other in latex, it is hard-coded (makes use of results='asis')
-for html the kable function is used, with kableExtra functionality
--->
 </div>
 </div>
 
