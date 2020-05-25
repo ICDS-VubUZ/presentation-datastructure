@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="w. cools" />
+<meta name="author" content="Wilfried Cools &amp; Lara Stas" />
 
 
 <title>Data Representation general principles and pointers</title>
@@ -179,36 +179,36 @@ summary {
 
 <h1 class="title toc-ignore"><p>Data Representation<br />
 general principles and pointers</p></h1>
-<h4 class="author">w. cools</h4>
+<h4 class="author">Wilfried Cools &amp; Lara Stas</h4>
 
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#key-message-on-data-representation">key message on data representation</a></li>
-<li><a href="#challenge">challenge</a></li>
-<li><a href="#outline">outline</a></li>
-<li><a href="#errors-and-inconveniences">errors and inconveniences</a><ul>
-<li><a href="#error-inconsistent-specification-of-cell-values">error: inconsistent specification of cell values</a></li>
-<li><a href="#error-ambiguous-and-incomplete-specification-of-cell-values">error: ambiguous and incomplete specification of cell values</a></li>
-<li><a href="#inconvenience-use-of-special-characters-and-numbers">inconvenience: use of special characters and numbers</a></li>
-<li><a href="#inconvenience-complex-and-lengthy-labels-and-values">inconvenience: complex and lengthy labels and values</a></li>
-<li><a href="#inconvenience-irrelevant-data">inconvenience: irrelevant data</a></li>
-<li><a href="#error-spreadsheets-for-human-interpretation-only">error: spreadsheets for human interpretation only</a></li>
+<li><a href="#key-message-on-data-representation">Key message on data representation</a></li>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#outline">Outline</a></li>
+<li><a href="#errors-and-inconveniences">Errors and inconveniences</a><ul>
+<li><a href="#error-inconsistent-specification-of-cell-values">Error: inconsistent specification of cell values</a></li>
+<li><a href="#error-ambiguous-and-incomplete-specification-of-cell-values">Error: ambiguous and incomplete specification of cell values</a></li>
+<li><a href="#inconvenience-use-of-special-characters-and-numbers">Inconvenience: use of special characters and numbers</a></li>
+<li><a href="#inconvenience-complex-and-lengthy-labels-and-values">Inconvenience: complex and lengthy labels and values</a></li>
+<li><a href="#inconvenience-irrelevant-data">Inconvenience: irrelevant data</a></li>
+<li><a href="#error-spreadsheets-for-human-interpretation-only">Error: spreadsheets for human interpretation only</a></li>
 </ul></li>
-<li><a href="#common-problems-and-solutions">common problems and solutions</a><ul>
-<li><a href="#a-bad-bad-exemplary-case-using-r-to-turn-it-around">a bad bad exemplary case, using R to turn it around</a></li>
-<li><a href="#long-form-univariate-representation">long form / univariate representation</a></li>
-<li><a href="#research-unit-specific-tables">research unit specific tables</a></li>
-<li><a href="#possible-but-never-observed-responses">possible but never observed responses</a></li>
-<li><a href="#disentangling-information-different-situations">disentangling information: different situations</a><ul>
-<li><a href="#different-types-of-missingness">different types of missingness</a></li>
-<li><a href="#numbers-and-ranges">numbers and ranges</a></li>
-<li><a href="#collections">collections</a></li>
+<li><a href="#common-problems-and-solutions">Common problems and solutions</a><ul>
+<li><a href="#a-bad-bad-exemplary-case-using-r-to-turn-it-around">A bad bad exemplary case, using R to turn it around</a></li>
+<li><a href="#long-form-representation">Long form representation</a></li>
+<li><a href="#research-unit-specific-tables">Research unit specific tables</a></li>
+<li><a href="#possible-but-never-observed-responses">Possible but never observed responses</a></li>
+<li><a href="#disentangling-information-different-situations">Disentangling information: different situations</a><ul>
+<li><a href="#different-types-of-missingness">Different types of missingness</a></li>
+<li><a href="#numbers-and-ranges">Numbers and ranges</a></li>
+<li><a href="#collections">Collections</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#codebook">codebook</a></li>
-<li><a href="#solution">solution</a></li>
+<li><a href="#codebook">Codebook</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 </div>
 
@@ -220,45 +220,19 @@ general principles and pointers</p></h1>
 </script>
 <style type="text/css">
 
-body{ /* Normal  */
-    font-size: 12px;
-    font-family: "Roboto", garamond;
-    color: #000000
-}
-td {  /* Table  */
-  font-size: 8px;
-}
-h1.title {
-  font-size: 38px;
-  font-family: "Avantgarde", garamond;
-  color: #000000;
-}
-h1 { /* Header 1 */
-  font-size: 28px;
-  font-family: "Avantgarde", garamond;
-  color: #003399;
-}
-h2 { /* Header 2 */
-  font-size: 22px;
-  font-family: "Avantgarde", garamond;
-  color: #003399;
-}
-h3 { /* Header 3 */
-  font-size: 18px;
-  font-family: "Avantgarde", garamond;
-  color: #003399;
-}
-h4 { /* Header 4 */
-  font-size: 12px;
-  font-family: "Avantgarde", garamond;
-  color: #003399;
-}
-code.r{ /* Code block */
-    font-size: 12px;
-}
-pre { /* Code block - determines code spacing between lines */
-    font-size: 14px;
-}
+    body{ font-size: 14px; font-family: "Roboto", garamond; color: #000000 }
+    td { font-size: 12px; }
+
+    h1.title { font-size: 38px; font-family: "Avantgarde", garamond; color: #000000; }
+    h1 { font-size: 28px; font-family: "Avantgarde", garamond; color: #003399; }
+    h2 { font-size: 22px; font-family: "Avantgarde", garamond; color: #003399; }
+    h3 { font-size: 18px; font-family: "Avantgarde", garamond; color: #003399; }
+    h4 { font-size: 12px; font-family: "Avantgarde", garamond; color: #003399; }
+
+    code{ font-size: 12px; }
+    code.r{ font-size: 12px; }
+    pre { font-size: 12px; }    /* code spacing between lines in code block */
+
 </style>
 <!--
 
@@ -283,24 +257,26 @@ rmarkdown::render(paste0(fname,".Rmd"),output_format=c('html_document'))
 <!-- all tibbl's used for table output -->
 <p> <br />
  </p>
-<p>Compiled May 15, 2020</p>
+<p>Compiled May 25, 2020</p>
 
 <p> <br />
  <br />
-Current draft aims to introduce researchers to the key ideas in data representation that would help prepare for data analysis. Our target audience is primarily the research community at VUB / UZ Brussel, those who might apply for data analysis at ICDS in particular.<br />
+Current draft aims to introduce researchers to the key ideas in data representation that would help to prepare their data for data analysis.<br />
+ <br />
+Our target audience is primarily the research community at VUB / UZ Brussel, those who might apply for data analysis at ICDS in particular.<br />
  <br />
 We invite you to help improve this document by sending us feedback<br />
 <a href="mailto:wilfried.cools@vub.be">wilfried.cools@vub.be</a> or anonymously at <A HREF="https://www.icds.be/consulting">icds.be/consulting</A> (right side, bottom)  <br />
  </p>
 <div id="key-message-on-data-representation" class="section level1">
-<h1>key message on data representation</h1>
+<h1>Key message on data representation</h1>
 <p> <br />
-In preparation of data analysis, it is wise to think carefully about how to represent data. The key ideas are listed first, and will be explained and exemplified in more detail throughout current draft.<br />
+In preparation of data analysis, it is wise to think carefully about how to represent your data. The key ideas are listed first, and will be explained and exemplified in more detail throughout current draft.<br />
  </p>
 <ul>
-<li>Represent data so that
+<li>represent data so that
 <ul>
-<li>you and fellow researchers understand it, now but also in future,</li>
+<li>you and fellow researchers understand it, now but also in the future,</li>
 <li>statistical algorithms understand it,</li>
 <li>the gap researcher - algorithm is minimized (efficient processing)
 <ul>
@@ -308,7 +284,7 @@ In preparation of data analysis, it is wise to think carefully about how to repr
 </li>
 </ul></li>
 </ul></li>
-<li>Table formats combine rows and columns in cells: <br />
+<li>table formats combine rows and columns in cells: <br />
 <ul>
 <li>cells contain one and only one piece of information,</li>
 <li>rows relate cells to a research unit, could be a patient, a mouse, a center, … ,</li>
@@ -316,16 +292,18 @@ In preparation of data analysis, it is wise to think carefully about how to repr
 <li>cells offer information for specific research unit - property combinations.  <br />
 </li>
 </ul></li>
-<li>Ideally, data are TIDY, with meaning appropriately mapped into structure: <br />
+<li>ideally, data are TIDY, with meaning appropriately mapped into structure: <br />
 <ul>
-<li>use observations as research unit (each row an observation),</li>
-<li>use a table for each type of observations (observational unit).  <br />
+<li>each row an observation as research unit,</li>
+<li>each column a variable as property,</li>
+<li>each cell a value,</li>
+<li>note: data can be split into multiple tables.  <br />
 </li>
 </ul></li>
-<li>Check data by
+<li>check data by
 <ul>
 <li>eye-balling to ensure a correct and unambiguous interpretation of cell values,</li>
-<li>descriptive analysis to detect anomalies from frequency tables and summaries.  <br />
+<li>descriptive analysis to detect anomalies from frequency tables and summary statistics (eg., mean, median, minimum-maximum).  <br />
  <br />
  </li>
 </ul></li>
@@ -333,9 +311,11 @@ In preparation of data analysis, it is wise to think carefully about how to repr
 
 </div>
 <div id="challenge" class="section level1">
-<h1>challenge</h1>
+<h1>Challenge</h1>
 <p> <br />
 Test yourself: create a data file for the following 4 participants (assuming many more), ready for analysis.<br />
+Read through this draft and if necessary alter your solution.<br />
+A possible solution is included at the end.<br />
  </p>
 <ul>
 <li>Enid Charles, age 43,
@@ -370,24 +350,24 @@ Test yourself: create a data file for the following 4 participants (assuming man
 
 </div>
 <div id="outline" class="section level1">
-<h1>outline</h1>
+<h1>Outline</h1>
 <p> <br />
 Current draft addresses data representation with the following outline:<br />
  </p>
 <ul>
-<li>a challenge: it is not always clear how</li>
+<li>a challenge: it is not always clear how (see above)</li>
 <li>errors and inconveniences</li>
-<li>common difficulties and solutions  <br />
+<li>common problems and solutions  <br />
  </li>
 </ul>
-<p>In following drafts, data manipulation, modeling and visualization are considered. Typically, all are more straightforward as data are more tidy.<br />
+<p>In following drafts, data manipulation, modeling and visualization are considered. Typically, all are more straightforward when data are more tidy.<br />
  <br />
  </p>
 </div>
 <div id="errors-and-inconveniences" class="section level1">
-<h1>errors and inconveniences</h1>
+<h1>Errors and inconveniences</h1>
 <p> <br />
-To avoid problems and frustration in your data analysis, it may be worthwhile to consider the checklist below. It points at various issues that have been encountered in actual data at ICDS and that are easy to avoid. In general most data offered by researchers that did not attempt to do their own analysis, or at least the preliminary descriptives, is full with issues like the ones highlighted in this section.  <br />
+To avoid problems and frustration in your data analysis, it may be worthwhile to consider the checklist below. It points at various issues that have been encountered in actual data at ICDS and that are easy to avoid. In general most data offered by researchers whom did not attempt to do their own analysis, or at least the preliminary descriptives, is full with issues like the ones highlighted in this section.  <br />
 In summary:</p>
 <ul>
 <li>inconsistencies</li>
@@ -396,11 +376,11 @@ In summary:</p>
  </li>
 </ul>
 <div id="error-inconsistent-specification-of-cell-values" class="section level2">
-<h2>error: inconsistent specification of cell values</h2>
+<h2>Error: inconsistent specification of cell values</h2>
 <p>When labeling or scoring properties for research units (cells), avoid typo’s, inconsistent labeling, inconsistent scoring, …</p>
 <p>Often observed problems:  </p>
 <ul>
-<li>typing errors, eg., <code>man</code> - <code>women</code> - <code>womem</code>,</li>
+<li>typing errors in values or labels, eg., <code>man</code> - <code>women</code> - <code>womem</code> or <code>likely</code> - <code>likly</code> - <code>Likely</code>,</li>
 <li>inconsistent use of capital letters, eg., <code>man</code> - <code>Man</code> - <code>woman</code>. Most statistical software is case sensitive (eg., R),</li>
 <li>inconsistent use of spaces (<code>_</code>), eg., <code>man__</code> - <code>man</code> - <code>_woman</code> - <code>woman</code>,</li>
 <li>inconsistent use of decimal indicators, eg., <code>4.2</code> - <code>5,3</code> - <code>5,9</code>. A comma is often used locally, a dot is used internationally (scientifically),</li>
@@ -541,37 +521,37 @@ woman
 </table>
 </td>
 </table>
-<p>Note that the average scores is 3.65, clearly something went wrong.</p>
+<p>Note that the average score for the table on the left appears to be 3.65, do you see what went wrong ?</p>
 <p> <br />
  </p>
 </div>
 <div id="error-ambiguous-and-incomplete-specification-of-cell-values" class="section level2">
-<h2>error: ambiguous and incomplete specification of cell values</h2>
+<h2>Error: ambiguous and incomplete specification of cell values</h2>
 <p>When labeling or scoring properties for research units (cells), avoid ambiguity and incompleteness.</p>
 <p>Often observed problems within cells:  </p>
 <ul>
 <li>empty cells not implying missing values
 <ul>
-<li>eg., those that imply the label above,</li>
-<li>eg., those implying either <code>missing</code> or <code>none</code> (no answer is different from the answer 0 or “”),</li>
+<li>eg., those that imply the label above (eg., Excel showcase below with empty field meaning <code>group 1</code>),</li>
+<li>eg., those implying either <code>missing</code> or <code>none</code>, no answer is different from the answer 0 or “” (eg., <code>types</code> variable in ambiguous - incomplete below),</li>
 </ul></li>
-<li>combined numerical and non-numerical values, eg., <code>3.9</code> - <code>&gt;10</code> (partially available information can be captured with an additional column),</li>
-<li>combined information within a cell, eg., <code>A:B</code>, <code>A:C</code>, <code>B</code>. (combined information can be split over additional columns, eg., colums A, B and C with values for present = yes or no).<br />
+<li>combined numerical and non-numerical values, eg., <code>3.9</code> combined with <code>&gt;10</code> (eg., <code>score</code> variable in ambiguous - incomplete below),</li>
+<li>combined information within a cell, eg., <code>A:B</code>, <code>A:C</code>, <code>B</code> to signal treatments received (none or A, B, and/or C) (eg., <code>types</code> variable in ambiguous - incomplete below).<br />
  </li>
 </ul>
-<p>Each cell should be fully interpretable on its own, with reference to both row and column only.</p>
+<p>Each cell should best be fully interpretable on its own, with reference to both row and column only. A codebook, discussed below, serves to alleviate any possible discrepancy between the data representation and the actual data.</p>
 <p>Often observed problems combining cells:<br />
  </p>
 <ul>
-<li>multiple line headers, eg., a header that covers multiple rows,</li>
-<li>merged cells, eg., a header value that covers multiple columns.  <br />
+<li>multiple line headers (eg., Excel showcase <code>blood volume</code> for both <code>baseline and after treatment</code>),</li>
+<li>merged cells (eg., Excel showcase <code>baseline measurement</code>).  <br />
  </li>
 </ul>
 </div>
 <div id="inconvenience-use-of-special-characters-and-numbers" class="section level2">
-<h2>inconvenience: use of special characters and numbers</h2>
-<p>When labeling or scoring, or when specifying a title, avoid characters that may not be understood properly. Note that some characters call for specific operations in certain statistical software.</p>
-<p>Often observed problems follow from using:  </p>
+<h2>Inconvenience: use of special characters and numbers</h2>
+<p>When labeling or scoring, or when specifying a variable name, avoid characters that may not be understood properly. Note that some characters call for specific operations in certain statistical software.</p>
+<p>Often observed inconveniences follow from using:  </p>
 <ul>
 <li>special characters and spaces (eg., <code>$, %, #, &quot;, ',</code>),</li>
 <li>use of names starting with numbers (eg., 1st).</li>
@@ -740,7 +720,7 @@ id5
  </p>
 </div>
 <div id="inconvenience-complex-and-lengthy-labels-and-values" class="section level2">
-<h2>inconvenience: complex and lengthy labels and values</h2>
+<h2>Inconvenience: complex and lengthy labels and values</h2>
 <p>When labeling variables or values, strike a balance between meaningful and simple. This is especially important when requesting help from data analysts who typically program their analysis and often do not understand your line of research. Some analysts may even prefer all values as numeric, (eg., 0 vs. 1) while others prefer short alphanumeric values (eg., male vs female).</p>
 <p> <br />
 Advice: To keep meaningful but long and complex headers, use a second line with simple headers to read in for the analysis. Maybe use <code>patientID</code> and <code>id1</code> instead of <code>patient_identifiers_of_first_block</code> and <code>patient_number_1</code>.</p>
@@ -946,20 +926,21 @@ rnk2
 </table>
 </td>
 </table>
+<p>A codebook could address the relation between labels and their interpretation as well.</p>
 <p> <br />
  </p>
 </div>
 <div id="inconvenience-irrelevant-data" class="section level2">
-<h2>inconvenience: irrelevant data</h2>
+<h2>Inconvenience: irrelevant data</h2>
 <p>When starting the analysis, or offering data to third parties, retain only the data of interest for the analysis. Store the remainder of the data in a secure place with an appropriate link.</p>
 <p> <br />
 Advice: remove</p>
 <ul>
 <li>information that could jeopardize GDPR, like names of patients (important),</li>
-<li>comments of participants, and other textual information not relevant for analysis</li>
-<li>variables that are registered insufficiently, or erroneously.</li>
-<li>variables that are well understood transformations from other variables</li>
-<li>anything that is not part of the main table, like figures and supporting tables</li>
+<li>comments of participants, and other textual information not relevant for analysis,</li>
+<li>variables that are registered insufficiently, or erroneously,</li>
+<li>variables that are well understood transformations from other variables (eg., averages or log-transformations),</li>
+<li>anything that is not part of the main table, like figures and supporting tables.</li>
 </ul>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
@@ -1061,11 +1042,10 @@ Grace Wahba
  </p>
 </div>
 <div id="error-spreadsheets-for-human-interpretation-only" class="section level2">
-<h2>error: spreadsheets for human interpretation only</h2>
-<p>Spreadsheets are convenient for representing data because their base structure is a table, with rows and columns, which you need for most statistical analysis, and because they allow for straightforward manipulations of data.<br />
-Although spreadsheets often offer ways to do the statistical analysis, or at least the data manipulation and visualization, it is in most cases more straightforward to do all that with statistical software that is designed for that (after having mastered it).</p>
+<h2>Error: spreadsheets for human interpretation only</h2>
+<p>Spreadsheets are convenient for representing data because their base structure is a table, with rows and columns, which you need for most statistical analysis, and because they allow for straightforward manipulations of data.</p>
 <p> <br />
-Manually constructed spreadsheets, Excel or other, unfortunately, promote the use of implicit information rather than the required explicit information. For example, cells are left empty because it is, at least for a human, clear from the context what the value should be.</p>
+Manually constructed spreadsheets, Excel or other, unfortunately, promote the use of implicit information rather than the required explicit information. For example, cells are left empty because it is, at least for a human, clear from the context what the value should be (eg., Excel showcase, empty field meaning group 1 or 2).</p>
 <ul>
 <li>incompleteness due to implicit information</li>
 <li>use of merged cells, not understood by algorithms</li>
@@ -1078,9 +1058,8 @@ Manually constructed spreadsheets, Excel or other, unfortunately, promote the us
 Excel deserves special attention. Understandably very popular, it often does more than expected and can cause serious problems.</p>
 <p>Often observed problems:</p>
 <ul>
-<li>inappropriate cell types, eg., values that are read in as if they are dates,</li>
-<li>inappropriate dimensions, eg., activated cells outside the data-frame or hidden columns,</li>
-<li>automatic changes of values because of inconsistencies between data and assumed data types.</li>
+<li>inappropriate cell types (eg., numeric values read in as if they are dates),</li>
+<li>inappropriate dimensions (eg., activated cells outside the data-frame or hidden columns),</li>
 </ul>
 <p> <br />
 Advice: A safe way to store data, once fully ready, could be a tab-delimited text file. While inconvenient to manipulate, risks for unwanted behavior are eliminated. It is straightforward to convert one into the other.</p>
@@ -1089,21 +1068,29 @@ Advice: A safe way to store data, once fully ready, could be a tab-delimited tex
 </div>
 </div>
 <div id="common-problems-and-solutions" class="section level1">
-<h1>common problems and solutions</h1>
+<h1>Common problems and solutions</h1>
 <p> <br />
-For data analysis in most cases data is represented in one or more tables. It is repeated that:</p>
-<p> <br />
-- Tables combine rows and columns in cells: <br /><br />
-- with rows that relate cells within a research unit, often optimally the observation itself, - with columns that relate cells to a property, - with cells that contain values which offer one and only one piece of information, combining a research unit and a property. - Tables for different but related research units are linked by identifiers.  <br />
+For data analysis data is most often represented in one or more tables. It is repeated that:</p>
+<p> </p>
+<ul>
+<li>Tables combine rows and columns into cells (see key message):
+<ul>
+<li>with rows that relate cells within a research unit (eg., a row contains all information about a particular observation),</li>
+<li>with columns that relate cells to a property (eg., a column contains all information about a particular variable)</li>
+<li>with cells that contain values which offer one and only one piece of information, combining a research unit and a property.  <br />
+</li>
+</ul></li>
+<li>Tables for different but related research units are linked by identifiers (eg., table for observation information, table for participant information).  <br />
  <br />
- </p>
+ </li>
+</ul>
 <div id="a-bad-bad-exemplary-case-using-r-to-turn-it-around" class="section level2">
-<h2>a bad bad exemplary case, using R to turn it around</h2>
+<h2>A bad bad exemplary case, using R to turn it around</h2>
 <p> <br />
-While it is best to avoid a bad data table from the start, when building it, if you can program then it is in many cases not impossible to convert tables into more appropriate forms.</p>
-<p>Note: R and the R package <code>tidyverse</code> that is used here is not considered in any detail in current draft. To learn how to manipulate, visualize and model data an introduction is offered in a subsequent draft: <code>introduction to tidyverse</code>.</p>
+While it is best to avoid a bad data table from the start, it is in many cases not impossible to convert tables into more appropriate forms.</p>
+<p>Purely for illustration purposes, <code>R</code> code is included using the <code>tidyverse</code> package to show a possible data transformation starting from a bad example turning it into another data representation. In current draft the focus is on data representation, not on changing it. More details on how to manipulate, visualize and model data are offered in future drafts.</p>
 <p> <br />
-For example, consider this monstrous dataset, showing various features that are common in data offered for analysis.</p>
+Consider this monstrous dataset, showing various features that are common in data offered for analysis.</p>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1762,7 +1749,8 @@ FALSE
 </table>
 </td>
 </table>
-<p>Apparently, various columns contain variable values. Observations are obtained under certain conditions, A or B, and at various time points, time 0, 1 or 2. Now for example condA_time1 partly overlaps with condA_time2 with its condition and condB_time1 with its time. Lets turn these columns into values first, and at the same time simply ignore the missing values.</p>
+<p>Apparently, various columns contain variable values (consider 4th to 9th column). As the variable names suggest, observations are obtained under certain conditions, A or B, and at various time points, time 0, 1 or 2. In this example <code>example condA_time1</code> partly overlaps with <code>condA_time2</code> with which it shares a method, and partly overlaps with <code>condB_time1</code> with which it shares a time point. Let’s turn these columns into values first, and at the same time simply ignore the missing values.</p>
+<p>Observe that the names of the columns turn into values in a column names <code>messystuff</code>, making the dataframe less wide and more long.</p>
 <pre class="r"><code>badExample &lt;- badExample %&gt;% 
     pivot_longer(names_to=&quot;messyStuff&quot;,values_to=&quot;scores&quot;,-c(id,young,stat,s1,s2)) %&gt;% 
     filter(!is.na(scores))</code></pre>
@@ -1986,7 +1974,7 @@ condA_time2
 </table>
 </td>
 </table>
-<p>But still, the new column still combines two types of information, condition and time, so lets split them over two columns.</p>
+<p>The new column still combines two types of information, condition and time. The column should be split into two columns.</p>
 <pre class="r"><code>badExample &lt;- badExample %&gt;% 
     separate(messyStuff,c('cond','time'))</code></pre>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
@@ -2236,7 +2224,7 @@ time2
 </table>
 </td>
 </table>
-<p>Much better. A last issue here is that the minimum and maximum could be variables and not values. No hard rules here, but often it is intuitively clear. So, lets turn these values into variables to represent two types of observation.</p>
+<p>Much better. A last issue here is that the minimum and maximum could be variables and not values. No hard rules here, but often it is intuitively clear. So, let’s turn these values into variables to represent two types of observation.</p>
 <pre class="r"><code>goodExample &lt;- badExample %&gt;% 
     pivot_wider(names_from=stat,values_from=scores)</code></pre>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
@@ -2382,7 +2370,7 @@ time2
 </table>
 </td>
 </table>
-<p>While not convenient here, when there are many variables it may be interesting to use this to split up the table into different tables for different research units. So, lets create a persons file and an observations file, and merge them together again afterwards.</p>
+<p>While not convenient here, if there are many variables it may be interesting to split the table into different tables. Each table is research unit specific. So, let’s create a persons file and an observations file, and merge them together again afterwards.</p>
 <pre class="r"><code>persons &lt;- goodExample %&gt;% select(id,young) %&gt;% distinct()
 observations &lt;- goodExample %&gt;% select(-young)
 combinedAgain &lt;- observations %&gt;% full_join(persons)</code></pre>
@@ -2696,14 +2684,22 @@ FALSE
 </table>
 </td>
 </table>
-<p>Various issues were highlighted, and will be discussed in more detail below. Long form (univariate) data is considered as a more flexible alternative to wide form (multivariate), the use of additional columns is considered to purify cell contents, and more.</p>
+<p>Various issues were highlighted, and will be discussed in more detail below.</p>
+<ul>
+<li>The two most important points are
+<ul>
+<li>a long form (univariate) data representation is more flexible compared to a wide form (multivariate) one</li>
+<li>additional columns can help isolate information in cells</li>
+</ul></li>
+</ul>
 <p> <br />
  </p>
 </div>
-<div id="long-form-univariate-representation" class="section level2">
-<h2>long form / univariate representation</h2>
+<div id="long-form-representation" class="section level2">
+<h2>Long form representation</h2>
 <p>If within a research unit several scores are obtained, they can be represented within a row but often it is better or even necessary to unfold them into multiple rows that are identified with an indicator variable.</p>
-<p>Consider for example the repeated measurements in both wide and long form, with the latter using identifiers within one column instead of labels in a set of columns.</p>
+For example, consider a repeated measurements datafile, with multiple observations for each participant. The observations within a patient could be represented on a patient specific row (wide) with an identifier column for the participant, or one below the other covering several rows (long) with an indicator variable for both the participant (includes multiple rows) and the time of observation.<br />
+
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -2918,19 +2914,19 @@ s2
 </table>
 </td>
 </table>
-<p>It is not always clear what should be in the rows, and what should be in the columns. For most situations the most general way to represent the data is to use the smallest possible research unit to define the rows.</p>
-<p>Note: the switch between both representations is easy. In Excel use <code>pivot</code> tables, in <code>R</code> use pivot_wider or pivot_longer in <code>tidyr</code> for example. Knowing how to transform data between wide and long form is very convenient and worth the effort learning about it.</p>
+<p>Note: the switch between both representations is easy. In Excel use <code>pivot</code> tables, in <code>R</code> many functions exist, for example the pivot_wider or pivot_longer in <code>tidyr</code>. Knowing how to transform data between wide and long form is very convenient and worth the effort learning about it.</p>
 <p> <br />
  </p>
 </div>
 <div id="research-unit-specific-tables" class="section level2">
-<h2>research unit specific tables</h2>
-<p>It may be appropriate to split up the table into different tables, as is done with relational databases that can be combined at will using key variables. Each possible research unit could as such have its own table. This is particularly interesting as datafiles get bigger and as values are constant within blocks.</p>
+<h2>Research unit specific tables</h2>
+<p>It may be appropriate to split up a table into different tables, as is done with relational databases, in order to combine all information in research unit specific tables. Different tables can be combined when of interest using key variables. This is particularly interesting as datafiles get bigger and as values are constant within blocks.</p>
+<p>For example, a datafile could be split into a person datafile and an observation datafile. A person file only consists of person related properties that are constant for a particular person. An observation file consists of observation related properties that are constant for a particular observation. Note that the person providing the observation is represented once per observation.</p>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-gender added
+information combined
 </caption>
 <thead>
 <tr>
@@ -3257,15 +3253,17 @@ s2
 </table>
 </td>
 </table>
+<p>For example, an additional table could be used to add item specific information about what the correct response is, how to score a particular response, or whether a score should be inverted when using it to summarize over an underlying scale. The main observation file includes the actual responses, not the scores.</p>
+<!-- add example with reverse coding -->
 <p>Note: to split up and merge tables is easy. In Excel use <code>merge</code>, in <code>R</code> use join in <code>dplyr</code> for example. Knowing how to split and combine data can be convenient.</p>
 <p> <br />
  </p>
 </div>
 <div id="possible-but-never-observed-responses" class="section level2">
-<h2>possible but never observed responses</h2>
-<p>A full data representation not only considers the actual data but also the possible data. While this information can be offered in a separate document, in some cases it could also be included in the data, using linked tables, with a table that for each variables lists all possible outcome.</p>
+<h2>Possible but never observed responses</h2>
+<p>A full data representation not only considers the actual data but also the possible data. The way to include this type of information is with additional tables that specify all possible outcomes. A codebook can also be used to provide this information in textual format.</p>
 <p>For example, consider a question for which the response option <code>fully agree</code> was never selected, a separate table could include that option nevertheless.</p>
-<p>Note that this would allow for questions for which multiple responses are appropriate, and for which no response could be the correct response. If this information is scored, then this would optimally include information on the selected option.</p>
+<p>For example, consider a question for which selecting none of the alternatives is a viable response, a separate table could include this.</p>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3447,16 +3445,17 @@ o3
 </table>
 </td>
 </table>
-<p>Note: it is possible to add option specific information, for example a score or indication of correctness.</p>
+<p>Note: it is possible to add option specific information, for example a score or indication of correctness. This has the advantage that the score can easily be changed and the used scores are easy to determine.</p>
 <p> <br />
  </p>
 </div>
 <div id="disentangling-information-different-situations" class="section level2">
-<h2>disentangling information: different situations</h2>
+<h2>Disentangling information: different situations</h2>
 <p>A main point of interest is to include only one piece of information within a cell, unambiguously interpretable. Typically this would involve brining in additional columns.</p>
+<p> </p>
 <div id="different-types-of-missingness" class="section level3">
-<h3>different types of missingness</h3>
-<p>It could be of interest to distinguish between a missing value due to non-response, and a missing value by design. A full data registration should, and can use an extra column for example.</p>
+<h3>Different types of missingness</h3>
+<p>It could be of interest to distinguish between a missing value due to non-response, and a missing value by design. A full data registration can include an extra column for example, to signal for each missing value how to interpret it. A codebook can be an alternative in which codes are specified for different types of missing data.</p>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3596,8 +3595,9 @@ id5
 <p> </p>
 </div>
 <div id="numbers-and-ranges" class="section level3">
-<h3>numbers and ranges</h3>
-<p>Variables sometimes combine values and ranges of values. A possible full data registration add a column to identify the ranges.</p>
+<h3>Numbers and ranges</h3>
+Variables sometimes combine both values and ranges of values. A possible full data registration adds a column to identify the ranges, so that the original column only includes values.<br />
+
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3743,8 +3743,8 @@ NA
 <p> </p>
 </div>
 <div id="collections" class="section level3">
-<h3>collections</h3>
-<p>Values within a variable are either the same or different, a partial equality should not be possible as it would signal that more than one piece of information is included. Partial overlap should be avoided by splitting up the information in different columns.</p>
+<h3>Collections</h3>
+<p>Values sometimes partially overlap so that they do not offer a single piece of information. A possible full data registration adds columns to isolate the different pieces of information.</p>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -3965,8 +3965,8 @@ id5
 </table>
 </td>
 </table>
-<p>Note that this way the combination of A and B is correctly considered as a combination of two constituing parts that were neither of them necessary. The original information is again easily retrieved from the available variables.</p>
-<p>Note: the original information is still available, but each variable contains only one type of information and cells have only numbers or (implied) ranges.</p>
+<p>Note that this way the combination of A and B is correctly considered as a combination of two constituting parts that were neither of them necessary. The original information is again easily retrieved from the available variables.</p>
+<p>Note: the original information is still available, but each variable contains only one type of information and cells have only numbers or boolean values.</p>
 <p> <br />
  <br />
  </p>
@@ -3974,16 +3974,23 @@ id5
 </div>
 </div>
 <div id="codebook" class="section level1">
-<h1>codebook</h1>
-<p>It is best to let data be as self-explanatory as possible. Information should also best be stored in ways that allow for automated processing.<br />
-Where impossible or very impractical to include information in the actual table(s), an external textual file can be used typically referred to as a codebook.</p>
+<h1>Codebook</h1>
+<p>It is best to let data be as self-explanatory as possible and ready for automated processing.<br />
+The information that is impossible or very impractical to include in the actual table(s) should be explained in a codebook. A codebook explains the discrepancy between the data as represented and its meaning.</p>
 <ul>
-<li>could include information on
+<li>a codebook could include information on
 <ul>
 <li>meaning of variable / intended use</li>
-<li>how data are collected</li>
+<li>measurement scale
+<ul>
 <li>range / set of possible values</li>
-<li>structural missingness</li>
+</ul></li>
+<li>types of missingness and its coding</li>
+<li>how data are collected
+<ul>
+<li>timing</li>
+<li>tools of observations</li>
+</ul></li>
 <li>. . .</li>
 </ul></li>
 </ul>
@@ -3993,8 +4000,8 @@ Where impossible or very impractical to include information in the actual table(
 
 </div>
 <div id="solution" class="section level1">
-<h1>solution</h1>
-<p>The challenge, one possible solution.</p>
+<h1>Solution</h1>
+<p>A possible solution to the challenge above is presented here. Other more simple solutions are possible.</p>
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -4305,7 +4312,7 @@ NA
 </table>
 </td>
 </table>
-The logged file, with observations, and the persons file, with person specific observation excluding identifiers can be combined, especially if the data is not large.<br />
+The logged file, with observations, and the persons file, with person specific observation excluding identifiers can be combined, especially if the data is not too large.<br />
 
 <table style="border:0px;margin-left:auto;margin-right:auto;">
 <td>
